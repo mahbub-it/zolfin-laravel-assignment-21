@@ -1,0 +1,33 @@
+body {
+	margin: 0 auto;
+}
+
+header.header {
+	width: 70%;
+	margin: auto;
+	padding: 0.5em;
+	clear: both;
+}
+
+footer.footer {
+	width: 100%;
+	margin: auto;
+	padding: .01em 0em;
+	color: white;
+	background-color: black;
+	clear: both;
+	text-align: center;
+}
+
+header .header-text {
+	color: green;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.slider-area {
+	width: 70%;
+	margin: auto;
+	padding: 0.5em;
+	clear: both;
+}
