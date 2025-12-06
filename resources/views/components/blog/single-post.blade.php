@@ -47,14 +47,14 @@
                                             <a href="#"
                                                 class="t-link t-link--alpha sm-text blog-post__footer-link text-capitalize">
                                                 <i class="las la-calendar"></i>
-                                                25 october
+                                                {{ date("d F Y", strtotime($data->created_at)) }}
                                             </a>
                                         </li>
                                         <li class="blog-post__footer-list t-mb-15 t-mr-15">
                                             <a href="#"
                                                 class="t-link t-link--alpha sm-text blog-post__footer-link text-capitalize">
                                                 <i class="las la-clock"></i>
-                                                8 min read
+                                                {{ $data->views }} views
                                             </a>
                                         </li>
                                     </ul>
@@ -284,8 +284,9 @@
             <div class="col-lg-4">
                 <aside>
                     <div class="widget">
-                        <form action="#" class="newsletter border t-pt-5 t-pb-5 t-pl-15 t-pr-10">
-                            <input type="text" placeholder="search here" class="w-100 newsletter__input" />
+                        <form action="{{ route('blog') }}" class="newsletter border t-pt-5 t-pb-5 t-pl-15 t-pr-10">
+                            <input type="text" placeholder="search here" name="search"
+                                class="w-100 newsletter__input" />
                             <button
                                 class="newsletter__button bttn bttn-round bttn-alpha bttn-sm text-uppercase border-0">
                                 search

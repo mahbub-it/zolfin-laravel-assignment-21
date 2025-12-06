@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BlogController;
 use App\Models\Post;
+use App\Http\Controllers\LoginController;
 
 // Home Controller
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -17,7 +18,7 @@ Route::get('/posts', [PostController::class, 'index']);
 //
 
 ////DATA Post Standard Methode////
-Route::get('/create-post', [PostController::class, 'create'] );
+Route::get('/create-post', [PostController::class, 'create']);
 //
 
 ////DATA Update Standard Methode////
@@ -46,3 +47,26 @@ Route::get('/model-test', [BlogController::class, 'model_test']);
 Route::get('category/{category:slug}', [BlogController::class, 'categoryWisePosts']);
 
 Route::get('users/{user:username}', [BlogController::class, 'userBasedPost'])->name('user-post');
+
+Route::get('search-page', function () {
+
+    $search_value = request('search');
+
+    $posts =
+        Post::
+            where('title', 'like', '%' . $search_value . '%')
+            ->orWhere('excerpt', 'like', '%' . $search_value . '%')
+            ->orWhere('content', 'like', '%' . $search_value . '%')
+            ->get();
+
+    return view('test-search', [
+
+        'posts' => $posts
+
+    ]);
+});
+
+// Registration and login route 
+
+Route::get('register', [LoginController::class, 'register']);
+Route::post('register', [LoginController::class, 'registerPost'])->name('registration');

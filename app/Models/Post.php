@@ -4,19 +4,24 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model {
+class Post extends Model
+{
+    protected $with = ['category', 'user'];
 
     // protected $table = 'another_posts';
 
-    public function getRouteKeyName(){
+    public function getRouteKeyName()
+    {
         return 'slug';
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function user(){
-        return $this->belongsTo( User::class );
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

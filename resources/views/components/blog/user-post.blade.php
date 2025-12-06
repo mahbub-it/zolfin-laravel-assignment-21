@@ -17,7 +17,7 @@
                             </a>
                         </li>
                         <li class="breadcrumbs__list">
-                            <a href="{{ route('user-post', $user->username)}} "
+                            <a href="{{ route('user-post', $user->username) }}"
                                 class="t-link breadcrumbs__link t-link--light-alpha text-capitalize">
                                 {{ $title }}
                             </a>
@@ -35,7 +35,7 @@
                     <div class="row">
 
 
-                        @foreach($user->posts as $post)
+                        @foreach($posts as $post)
 
 
                             <div class="col-12 t-mb-50">

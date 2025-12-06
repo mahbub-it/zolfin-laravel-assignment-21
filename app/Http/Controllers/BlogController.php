@@ -12,9 +12,14 @@ class BlogController extends Controller
 {
     public function index()
     {
+        $search = request('search');
 
         return view('pages.blog', [
-            'posts' => Post::all(),
+            'posts' => Post::with('category', 'user')
+                ->where('title', 'like', '%' . $search . '%')
+                ->orWhere('excerpt', 'like', '%' . $search . '%')
+                ->orWhere('content', 'like', '%' . $search . '%')
+                ->get(),
             'title' => 'Blog'
         ]);
 
@@ -24,6 +29,8 @@ class BlogController extends Controller
     {
 
         $category = $post->category;
+
+        $post->increment('views', 1);
 
         // dd(Post::where('slug', $slug)->get()->first()->title );
         // $category_id = $post->category_id;
@@ -57,7 +64,8 @@ class BlogController extends Controller
 
         return view('components.blog.user-post', [
             'title' => $user->name,
-            'user' => $user
+            'user' => $user,
+            'posts' => $user->posts
         ]);
     }
 
