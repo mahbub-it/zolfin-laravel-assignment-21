@@ -28,11 +28,12 @@
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+            <div style="max-width:150px; margin:auto;"
+                class="text-center bg-white navbar-brand-wrapper d-flex align-items-top justify-content-center">
                 <a class="navbar-brand brand-logo" href="{{ route('home') }}">
-                    <img src="{{ asset('/admin/assets/images/logo.svg') }}" alt="logo" /> </a>
+                    <img src="{{ asset('/assets/img/logo.png') }}" alt="logo" /> </a>
                 <a class="navbar-brand brand-logo-mini" href="{{ route('home') }}">
-                    <img src="{{ asset('/admin/assets/images/logo-mini.svg') }}" alt="logo" /> </a>
+                    <img src="{{ asset('/assets/img/logo.png') }}" alt="logo" /> </a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center">
                 <ul class="navbar-nav">
@@ -164,8 +165,8 @@
                     <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
                             aria-expanded="false">
-                            <img class="img-xs rounded-circle" src="{{ asset('/admin/assets/images/faces/face8.jpg') }}"
-                                alt="Profile image">
+                            <img class="img-xs rounded-circle"
+                                src="{{ asset('/admin/assets/images/faces/mahbub.png') }}" alt="Profile image">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <div class="dropdown-header text-center">
@@ -198,7 +199,7 @@
                         <a href="#" class="nav-link">
                             <div class="profile-image">
                                 <img class="img-xs rounded-circle"
-                                    src="{{ asset('/admin/assets/images/faces/face8.jpg') }}" alt="profile image">
+                                    src="{{ asset('/admin/assets/images/faces/mahbub.png') }}" alt="profile image">
                                 <div class="dot-indicator bg-success"></div>
                             </div>
                             <div class="text-wrapper">
