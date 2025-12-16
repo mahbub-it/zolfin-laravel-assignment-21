@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\BlogController;
 use App\Models\Post;
 use App\Http\Controllers\LoginController;
+use Illuminate\Http\Request;
 
 // Home Controller
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -79,3 +80,19 @@ Route::post('login', [LoginController::class, 'loginPost'])->name('loginProcess'
 
 Route::get('dashboard', [LoginController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 Route::post('logout', [LoginController::class, 'signout'])->middleware('auth')->name('logout');
+
+Route::get('/img-upload', function () {
+    return view('upload-img');
+});
+
+Route::post('img-upload', function (Request $request) {
+
+    $image = $request->file('thumbnail');
+
+    $image_name = time() . '-' . $image->getClientOriginalName();
+
+    $image->storeAs('/public/images', $image_name);
+
+    return 'Image uploaded successfully';
+
+})->name('upload-img');
