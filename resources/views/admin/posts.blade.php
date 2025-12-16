@@ -11,9 +11,15 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
+                            @if (session('success'))
+                                <div class="alert alert-danger">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col">
                                     <h2 style="font-size: 24px;" class="card-title">All posts</h2>
+
                                 </div>
                                 <div class="col-4">
                                     <form class="ml-auto search-form d-none d-md-block" method="GET"
@@ -53,7 +59,13 @@
                                             <td> {{ $post->user->name }} </td>
                                             <td> {{ $post->views }} </td>
                                             <td> {{ date('F d, Y', strtotime($post->updated_at)) }} </td>
-                                            <td> <a class="btn btn-info" href="{{route('admin.post.edit', $post->id)}}">Edit</a>
+                                            <td>
+                                                <a class="btn btn-info" href="{{route('admin.post.edit', $post->id)}}">Edit</a>
+                                                <form action="{{route('admin.post.delete', $post->id)}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

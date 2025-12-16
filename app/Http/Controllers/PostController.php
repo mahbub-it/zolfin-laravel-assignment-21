@@ -35,15 +35,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        $title = "Mahbub";
-        $thumbnail = "http://127.0.0.1:8000/assets/img/blog-post.png";
-        $excerpt = "This is a standard data post/insert methode";
-
-        $insert_post = DB::insert("INSERT INTO posts (title, thumbnail, excerpt) VALUES (?, ?, ?)", [$title, $thumbnail, $excerpt]);
-
-        if ($insert_post) {
-            return "post has been inserted";
-        }
+        $categories = Category::all();
+        return view('admin.create-post', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -96,11 +91,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post_id = 9;
-        DB::table("posts")
-            ->where('id', $post_id)
-            ->delete();
+        $post->delete();
+        return back()->with('success', 'Post has been deleted...');
     }
 }

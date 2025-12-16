@@ -16,22 +16,22 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <h4 class="card-title">Edit Post</h4>
+                            <h4 class="card-title">Create New Post</h4>
                             <hr>
-                            <form class="forms-sample" method="POST" action="{{ route('admin.post.update', $post->id) }}">
+                            <form class="forms-sample" method="POST" action="{{ route('admin.post.create') }}">
                                 @csrf
-                                @method('PUT')
+
                                 <div class="form-group">
                                     <label for="posttitle">Post Title</label>
                                     <input type="text" name="title" class="form-control" id="posttitle"
-                                        placeholder="Post Title" value="{{ $post->title }}">
+                                        placeholder="Post Title" value="{{ old('title') }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Post Thumbnail</label>
                                     <input type="file" name="img[]" class="file-upload-default">
                                     <div class="input-group col-xs-12">
                                         <input type="text" name="thumbnail" class="form-control file-upload-info"
-                                            value="{{ $post->thumbnail }}" placeholder="Upload Image">
+                                            value="{{ old('thumbnail') }}" placeholder="Upload Image">
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-info" type="button">Upload</button>
                                         </span>
@@ -40,27 +40,27 @@
                                 <div class="form-group">
                                     <label for="postexcerpt">Post Excerpt</label>
                                     <textarea class="form-control" name="excerpt" id="postexcerpt" rows="2">
-                                                                                                            {{ $post->excerpt }}
-                                                                                                        </textarea>
+                                                        {{ old('excerpt') }}
+                                                    </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="postcontent">Post Content</label>
                                     <textarea class="form-control" name="content" id="postcontent" rows="2">
-                                                                                                            {{ $post->content }}
-                                                                                                        </textarea>
+                                                        {{ old('content') }}
+                                                </textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="postcategory">Post Category</label>
                                     <select class="form-control" name="category_id" id="">
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" @if($category->id == $post->category_id)
+                                            <option value="{{ $category->id }}" @if($category->id == old('category_id'))
                                             selected="selected" @endif>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
-                                <button type=" submit" class="btn btn-success mr-2">Update Post</button>
+                                <button type=" submit" class="btn btn-success mr-2">Publish Post</button>
                                 <button type="reset" class="btn btn-light">Cancel</button>
                             </form>
                         </div>

@@ -18,7 +18,7 @@ Route::get('/admin/posts', [PostController::class, 'index'])->name('admin.posts'
 //
 
 ////DATA Post Standard Methode////
-Route::get('/create-post', [PostController::class, 'create']);
+Route::get('/admin/post/create', [PostController::class, 'create'])->name('admin.post.create');
 //
 
 ////DATA Update Standard Methode////
@@ -28,7 +28,7 @@ Route::put('/admin/post/update/{post}', [PostController::class, 'update'])->name
 //
 
 ////Or Another Way to DATA Delete ////
-Route::get('/delete-post', [PostController::class, 'destroy']);
+Route::delete('/admin/post/delete/{post}', [PostController::class, 'destroy'])->name('admin.post.delete');
 //
 
 //
