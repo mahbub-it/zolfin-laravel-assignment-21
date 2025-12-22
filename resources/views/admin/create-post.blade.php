@@ -19,7 +19,7 @@
 
                             <h4 class="card-title">Create New Post</h4>
                             <hr>
-                            <form class="forms-sample" method="POST" action="{{ route('admin.post.store') }}"
+                            <form class="forms-sample" method="POST" action="{{ route('posts.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
 
@@ -62,8 +62,8 @@
                                         </div>
                                     @enderror
                                     <textarea class="form-control" name="content" id="postcontent" rows="2">
-                                                                                                                                                                    {{ old('content') }}
-                                                                                                                                                            </textarea>
+                                                                                                                                                                        {{ old('content') }}
+                                                                                                                                                                </textarea>
                                 </div>
 
                                 <div class="form-group">

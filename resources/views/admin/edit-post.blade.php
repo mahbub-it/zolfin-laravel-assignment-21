@@ -18,7 +18,7 @@
                             @endif
                             <h4 class="card-title">Edit Post</h4>
                             <hr>
-                            <form class="forms-sample" method="POST" action="{{ route('admin.post.update', $post->id) }}">
+                            <form class="forms-sample" method="POST" action="{{ route('posts.update', $post->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
@@ -40,14 +40,14 @@
                                 <div class="form-group">
                                     <label for="postexcerpt">Post Excerpt</label>
                                     <textarea class="form-control" name="excerpt" id="postexcerpt" rows="2">
-                                                                                                            {{ $post->excerpt }}
-                                                                                                        </textarea>
+                                                                                                                {{ $post->excerpt }}
+                                                                                                            </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="postcontent">Post Content</label>
                                     <textarea class="form-control" name="content" id="postcontent" rows="2">
-                                                                                                            {{ $post->content }}
-                                                                                                        </textarea>
+                                                                                                                {{ $post->content }}
+                                                                                                            </textarea>
                                 </div>
 
                                 <div class="form-group">

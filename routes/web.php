@@ -16,19 +16,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 ////DATA Show Methode////
 // Post Controller //
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::get('posts', [PostController::class, 'index'])->name('admin.posts');
-    Route::get('post/create', [PostController::class, 'create'])->name('admin.post.create');
-    Route::post('post/store', [PostController::class, 'store'])->name('admin.post.store');
-    Route::get('post/{post}', [PostController::class, 'edit'])->name('admin.post.edit');
-    Route::put('post/update/{post}', [PostController::class, 'update'])->name('admin.post.update');
-    Route::delete('post/delete/{post}', [PostController::class, 'destroy'])->name('admin.post.delete');
+
+    Route::resource('posts', PostController::class);
+
 });
 
-Route::get('/blog', [BlogController::class, 'index'])->name("blog");
+// Route::get('/blog', [BlogController::class, 'index'])->name("blog");
 
-Route::get('/article/{post}', [BlogController::class, 'single'])->name('single-post');
+// Route::get('/article/{post}', [BlogController::class, 'single'])->name('single-post');
 
-Route::get('/model-test', [BlogController::class, 'model_test']);
+// Route::get('/model-test', [BlogController::class, 'model_test']);
 
 // Route::get('/post/{id}', function($post_id){
 //     $single_post = Post::find($post_id);
@@ -37,32 +34,32 @@ Route::get('/model-test', [BlogController::class, 'model_test']);
 //     dd($post->content);
 // });
 
-Route::get('category/{category:slug}', [BlogController::class, 'categoryWisePosts']);
+// Route::get('category/{category:slug}', [BlogController::class, 'categoryWisePosts']);
 
-Route::get('users/{user:username}', [BlogController::class, 'userBasedPost'])->name('user-post');
+// Route::get('users/{user:username}', [BlogController::class, 'userBasedPost'])->name('user-post');
 
-Route::get('search-page', function () {
+// Route::get('search-page', function () {
 
-    $search_value = request('search');
+//     $search_value = request('search');
 
-    $posts =
-        Post::
-            where('title', 'like', '%' . $search_value . '%')
-            ->orWhere('excerpt', 'like', '%' . $search_value . '%')
-            ->orWhere('content', 'like', '%' . $search_value . '%')
-            ->get();
+//     $posts =
+//         Post::
+//             where('title', 'like', '%' . $search_value . '%')
+//             ->orWhere('excerpt', 'like', '%' . $search_value . '%')
+//             ->orWhere('content', 'like', '%' . $search_value . '%')
+//             ->get();
 
-    return view('test-search', [
+//     return view('test-search', [
 
-        'posts' => $posts
+//         'posts' => $posts
 
-    ]);
-});
+//     ]);
+// });
 
 // Registration and login route 
 
-Route::get('register', [LoginController::class, 'register'])->name('register')->middleware('guest');
-Route::post('register', [LoginController::class, 'registerPost'])->name('registerProcess');
+// Route::get('register', [LoginController::class, 'register'])->name('register')->middleware('guest');
+// Route::post('register', [LoginController::class, 'registerPost'])->name('registerProcess');
 
 Route::get('login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('login', [LoginController::class, 'loginPost'])->name('loginProcess');
@@ -70,23 +67,23 @@ Route::post('login', [LoginController::class, 'loginPost'])->name('loginProcess'
 Route::get('dashboard', [LoginController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 Route::post('logout', [LoginController::class, 'signout'])->middleware('auth')->name('logout');
 
-Route::get('/img-upload', function () {
-    return view('upload-img');
-});
+// Route::get('/img-upload', function () {
+//     return view('upload-img');
+// });
 
-Route::post('img-upload', function (Request $request) {
+// Route::post('img-upload', function (Request $request) {
 
-    $image = $request->file('thumbnail');
+//     $image = $request->file('thumbnail');
 
-    $image_name = time() . '-' . $image->getClientOriginalName();
+//     $image_name = time() . '-' . $image->getClientOriginalName();
 
-    $image->storeAs('/public/images', $image_name);
+//     $image->storeAs('/public/images', $image_name);
 
-    return 'Image uploaded successfully';
+//     return 'Image uploaded successfully';
 
-})->name('upload-img');
+// })->name('upload-img');
 
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-    return 'Storage link created';
-});
+// Route::get('/linkstorage', function () {
+//     Artisan::call('storage:link');
+//     return 'Storage link created';
+// });

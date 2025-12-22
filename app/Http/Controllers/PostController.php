@@ -71,7 +71,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('admin.posts')->with('message', 'Post has been published...');
+        return redirect()->route('posts.index')->with('message', 'Post has been published...');
     }
 
     /**

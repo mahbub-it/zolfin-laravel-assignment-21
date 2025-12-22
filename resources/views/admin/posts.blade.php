@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="col-4">
                                     <form class="ml-auto search-form d-none d-md-block" method="GET"
-                                        action="{{route('admin.posts')}}">
+                                        action="{{route('posts.index')}}">
                                         <div class="form-group">
                                             <input type="search" class="form-control" placeholder="Search from posts..."
                                                 name="search" value="{{$keyword}}">
@@ -62,8 +62,8 @@
                                             <td> {{ $post->views }} </td>
                                             <td> {{ date('F d, Y', strtotime($post->updated_at)) }} </td>
                                             <td>
-                                                <a class="btn btn-info" href="{{route('admin.post.edit', $post->id)}}">Edit</a>
-                                                <form action="{{route('admin.post.delete', $post->id)}}" method="POST">
+                                                <a class="btn btn-info" href="{{route('posts.edit', $post->id)}}">Edit</a>
+                                                <form action="{{route('posts.destroy', $post->id)}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger mt-2">Delete</button>
