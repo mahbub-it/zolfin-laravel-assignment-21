@@ -38,7 +38,7 @@
                         <a class="nav-link" href="{{ route('posts.create') }}">Create new post</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Categories</a>
+                        <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
                     </li>
                 </ul>
             </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Category;
+
 class CategoryController extends Controller
 {
     /**
@@ -11,7 +13,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $keyword = request('search');
+
+        $title = "All Categories";
+
+        $categories = Category::where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('slug', 'like', '%' . $keyword . '%')
+            ->orderBy('id', 'asc')->paginate(5);
+
+        return view("admin.categories.index", compact("keyword", "categories", "title"));
     }
 
     /**
@@ -19,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.categories.create");
     }
 
     /**

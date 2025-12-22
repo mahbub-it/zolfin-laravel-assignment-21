@@ -23,7 +23,7 @@ class PostController extends Controller
             ->orWhere('content', 'like', '%' . $keyword . '%')
             ->orderBy('id', 'desc')->paginate(6);
 
-        return view('admin.posts', [
+        return view('admin.posts.posts', [
             'posts' => $posts,
             'keyword' => $keyword,
             'title' => $title
@@ -39,7 +39,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.create-post', [
+        return view('admin.posts.create-post', [
             'categories' => $categories,
             'title' => 'Create New Post'
         ]);
@@ -94,7 +94,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $category = Category::all();
-        return view('admin.edit-post', [
+        return view('admin.posts.edit-post', [
             'post' => $post,
             'categories' => $category,
             'cat' => $post->category
