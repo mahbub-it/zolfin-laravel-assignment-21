@@ -8,7 +8,30 @@
         <div class="content-wrapper">
             <div class="row">
 
-                <div class="col-lg-12 grid-margin stretch-card">
+                <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col">
+                                    <h2 style="font-size: 24px;" class="card-title">Add new category</h2>
+                                </div>
+                            </div>
+
+                            <div class="category-form">
+                                <form action="">
+                                    <input class="form-control mb-2" type="text" placeholder="Category name" />
+
+                                    <button class="btn btn-primary" type="submit">Create category</button>
+                                </form>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
                             @if(session()->get('message'))
@@ -36,10 +59,8 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th> Category ID </th>
-                                        <th> Category Name </th>
-                                        <th> Category Slug </th>
-                                        <th> Updated on </th>
+                                        <th> ID </th>
+                                        <th> Name </th>
                                         <th> <i class="mdi mdi-dots-horizontal"></i> </th>
                                     </tr>
                                 </thead>
@@ -49,8 +70,6 @@
                                         <tr>
                                             <td>{{ $category->id }}</td>
                                             <td> {{ $category->name }} </td>
-                                            <td> {{ $category->slug }} </td>
-                                            <td> {{ date('F d, Y', strtotime($category->updated_at)) }} </td>
                                             <td>
                                                 <a class="btn btn-info"
                                                     href="{{route('categories.edit', $category->id)}}">Edit</a>
