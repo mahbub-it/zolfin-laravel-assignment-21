@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
         $categories = Category::where('name', 'like', '%' . $keyword . '%')
             ->orWhere('slug', 'like', '%' . $keyword . '%')
-            ->orderBy('id', 'asc')->paginate(5);
+            ->orderBy('id', 'desc')->paginate(6);
 
         return view("admin.categories.index", compact("keyword", "categories", "title"));
     }
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     {
         $category = new Category();
         $category->name = $request->category_name;
-        $category->slug = implode("-", explode(" ", $request->category_name));
+        $category->slug = strtolower(implode("-", explode(" ", $request->category_name)));
         $category->save();
 
         if ($category->save()) {
@@ -62,7 +62,17 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $keyword = request('search');
+
+        $title = "Edit Category";
+
+        $currentCategory = Category::firstWhere("id", $id);
+
+        $categories = Category::where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('slug', 'like', '%' . $keyword . '%')
+            ->orderBy('id', 'desc')->paginate(6);
+
+        return view("admin.categories.edit", compact("keyword", "categories", "title", "categories", "currentCategory"));
     }
 
     /**
@@ -70,7 +80,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::firstWhere("id", $id);
+
+        $category->name = $request->category_name;
+        $category->slug = strtolower(implode("-", explode(" ", $request->category_slug)));
+
+        $category->save();
+
+        if ($category->save()) {
+            return back()->with("message", "Category updated successfully");
+        } else {
+            return back()->with("message", "Category updated failed");
+        }
     }
 
     /**
