@@ -57,7 +57,7 @@ cat /var/www/html/.htaccess
 
 # Check public .htaccess
 cat /var/www/html/public/.htaccess
-```
+``` 
 
 **Found in Root** (`/var/www/html/.htaccess`):
 ```apache

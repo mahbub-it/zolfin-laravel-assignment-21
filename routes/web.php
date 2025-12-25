@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserController;
 use App\Models\Post;
 use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resources([
         'posts' => PostController::class,
-        'categories' => CategoryController::class
+        'categories' => CategoryController::class,
+        'users' => UserController::class
     ]);
 
 });

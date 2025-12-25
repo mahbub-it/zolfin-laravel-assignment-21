@@ -45,6 +45,24 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-users" aria-expanded="false" aria-controls="ui-users">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">Users</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-users">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">All users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.create') }}">My Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon typcn typcn-coffee"></i>
                 <span class="menu-title">Basic UI Elements</span>
