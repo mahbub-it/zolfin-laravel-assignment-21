@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create-user');
     }
 
     /**
@@ -50,9 +50,9 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('admin.users.edit-user', compact('user'));
     }
 
     /**
@@ -66,8 +66,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+
+        $user->delete();
+
+        return back()->with('message', 'User deleted successfully');
     }
 }

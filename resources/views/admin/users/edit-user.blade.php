@@ -16,51 +16,45 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <h4 class="card-title">Edit Post</h4>
+                            <h4 class="card-title">Edit User</h4>
                             <hr>
-                            <form class="forms-sample" method="POST" action="{{ route('posts.update', $post->id) }}">
+                            <form class="forms-sample" method="POST" action="{{ route('users.update', $user->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="posttitle">Post Title</label>
-                                    <input type="text" name="title" class="form-control" id="posttitle"
-                                        placeholder="Post Title" value="{{ $post->title }}">
+                                    <label for="name">Full name</label>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Full name"
+                                        value="{{ $user->name }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Post Thumbnail</label>
+                                    <label>User Photo</label>
                                     <input type="file" name="img[]" class="file-upload-default">
                                     <div class="input-group col-xs-12">
                                         <input type="text" name="thumbnail" class="form-control file-upload-info"
-                                            value="{{ $post->thumbnail }}" placeholder="Upload Image">
+                                            value="{{ $user->photo }}" placeholder="Upload Image">
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-info" type="button">Upload</button>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="postexcerpt">Post Excerpt</label>
-                                    <textarea class="form-control" name="excerpt" id="postexcerpt" rows="2">
-                                                                                                                {{ $post->excerpt }}
-                                                                                                            </textarea>
+                                    <label for="email">Email address</label>
+                                    <input type="text" name="email" class="form-control" id="email"
+                                        placeholder="Email address" value="{{ $user->email }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="postcontent">Post Content</label>
-                                    <textarea class="form-control" name="content" id="postcontent" rows="2">
-                                                                                                                {{ $post->content }}
-                                                                                                            </textarea>
+                                    <label for="password">Password</label>
+                                    <input type="text" name="password" class="form-control" id="password"
+                                        placeholder="Password" value="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="postcategory">Post Category</label>
-                                    <select class="form-control" name="category_id" id="">
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" @if($category->id == $post->category_id)
-                                            selected="selected" @endif>{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="re-password">Re-write Password</label>
+                                    <input type="text" name="password_confirmation" class="form-control" id="re-password"
+                                        placeholder="Re-write Password" value="">
                                 </div>
 
-                                <button type=" submit" class="btn btn-success mr-2">Update Post</button>
+                                <button type=" submit" class="btn btn-success mr-2">Update User</button>
                                 <button type="reset" class="btn btn-light">Cancel</button>
                             </form>
                         </div>

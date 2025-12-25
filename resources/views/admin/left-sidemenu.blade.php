@@ -56,6 +56,9 @@
                         <a class="nav-link" href="{{ route('users.index') }}">All users</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.create') }}">Create new user</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.create') }}">My Profile</a>
                     </li>
                 </ul>

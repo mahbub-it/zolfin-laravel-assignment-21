@@ -16,67 +16,45 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-
-                            <h4 class="card-title">Create New Post</h4>
+                            <h4 class="card-title">Create New User</h4>
                             <hr>
-                            <form class="forms-sample" method="POST" action="{{ route('posts.store') }}"
-                                enctype="multipart/form-data">
+                            <form class="forms-sample" method="POST" action="{{ route('users.store') }}">
                                 @csrf
 
                                 <div class="form-group">
-                                    <label for="posttitle">Post Title</label>
-                                    @error('title')
-                                        <div class="alert alert-danger">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                    <input type="text" name="title" class="form-control" id="posttitle"
-                                        placeholder="Post Title" value="{{ old('title') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Post Thumbnail</label>
-                                    <br>
-                                    <input type="file" name="thumbnail">
-                                    @error('thumbnail')
-                                        <div class="alert alert-danger">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="postexcerpt">Post Excerpt</label>
-                                    @error('excerpt')
-                                        <div class="alert alert-danger">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                    <textarea class="form-control" name="excerpt" id="postexcerpt"
-                                        rows="2">{{ old('excerpt') }}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="postcontent">Post Content</label>
-                                    @error('content')
-                                        <div class="alert alert-danger">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                    <textarea class="form-control" name="content" id="postcontent" rows="2">
-                                                                                                                                                                        {{ old('content') }}
-                                                                                                                                                                </textarea>
+                                    <label for="name">Full name</label>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Full name">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="postcategory">Post Category</label>
-                                    <select class="form-control" name="category_id" id="">
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" @if($category->id == old('category_id'))
-                                            selected="selected" @endif>{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>User Photo</label>
+                                    <input type="file" name="img[]" class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" name="thumbnail" class="form-control file-upload-info"
+                                            placeholder="Upload Image">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="text" name="email" class="form-control" id="email"
+                                        placeholder="Email address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="text" name="password" class="form-control" id="password"
+                                        placeholder="Password">
                                 </div>
 
-                                <button type=" submit" class="btn btn-success mr-2">Publish Post</button>
+                                <div class="form-group">
+                                    <label for="re-password">Re-write Password</label>
+                                    <input type="text" name="password_confirmation" class="form-control" id="re-password"
+                                        placeholder="Re-write Password" value="">
+                                </div>
+
+                                <button type=" submit" class="btn btn-success mr-2">Create User</button>
                                 <button type="reset" class="btn btn-light">Cancel</button>
                             </form>
                         </div>
