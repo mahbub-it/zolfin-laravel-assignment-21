@@ -36,7 +36,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'min:8|required|confirmed',
+            'password_confirmation' => 'required|same:password',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->username = implode("-", explode(" ", trim(strtolower($request->name))));
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        $photo_name = $request->file('photo')->hashName();
+        $request->file('photo')->storeAs('public/images', $photo_name);
+
+        $user->photo = $photo_name;
+
+        $user->save();
+
+        return back()->with('success', 'User created successfully');
     }
 
     /**
